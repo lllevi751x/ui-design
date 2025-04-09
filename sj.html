@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>培训应用 - 两种主题</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+      body {
+        overflow-x: auto;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f5f7fa;
+        padding: 40px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .themes-container {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+      }
+
+      .page-title {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #1d2129;
+      }
+
+      /* 亮色主题 - 采用arco.design色彩系统 */
+      .light-theme {
+        --bg-main: #f2f3f5;
+        --bg-container: #ffffff;
+        --bg-card: #ffffff;
+        --bg-status-bar: #f7f8fa;
+        --border-color: #e5e6eb;
+        --border-card: #f2f3f5;
+        --text-primary: #1d2129;
+        --text-secondary: #4e5969;
+        --text-tertiary: #86909c;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+        --primary-color: #165dff;
+        --primary-color-hover: #4080ff;
+        --primary-color-light: #e8f3ff;
+
+        --success-color: #00b42a;
+        --success-color-hover: #23c343;
+        --success-color-light: #e8ffea;
+
+        --warning-color: #ff7d00;
+        --warning-color-hover: #ff9a2e;
+        --warning-color-light: #fff7e8;
+
+        --danger-color: #f53f3f;
+        --danger-color-hover: #f76560;
+        --danger-color-light: #fff0f0;
+
+        --status-not-started-bg: #f2f3f5;
+        --status-not-started-text: #4e5969;
+        --status-in-progress-bg: #e8ffea;
+        --status-in-progress-text: #00b42a;
+        --status-completed-bg: #fff0f0;
+        --status-completed-text: #f53f3f;
+
+        --btn-view-bg: #e8f3ff;
+        --btn-view-text: #165dff;
+        --btn-view-hover: #cde3ff;
+        --btn-edit-bg: #e8ffea;
+        --btn-edit-text: #00b42a;
+        --btn-edit-hover: #c6ffcf;
+        --btn-delete-bg: #fff0f0;
+        --btn-delete-text: #f53f3f;
+        --btn-delete-hover: #ffcccb;
+
+        --input-bg: #f7f8fa;
+        --input-border: #e5e6eb;
+        --input-focus-border: #4080ff;
+        --input-focus-bg: #ffffff;
+        --input-focus-shadow: rgba(22, 93, 255, 0.1);
+      }
+
+      /* 暗色主题 - 采用arco.design暗色模式 */
+      .dark-theme {
+        --bg-main: #17171a;
+        --bg-container: #232324;
+        --bg-card: #2a2a2b;
+        --bg-status-bar: #17171a;
+        --border-color: #333335;
+        --border-card: #373739;
+        --text-primary: #f6f6f6;
+        --text-secondary: #c9cdd4;
+        --text-tertiary: #86909c;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+        --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+        --primary-color: #4080ff;
+        --primary-color-hover: #6aa1ff;
+        --primary-color-light: #1c2b4f;
+
+        --success-color: #23c343;
+        --success-color-hover: #4cd263;
+        --success-color-light: #1a2b1e;
+
+        --warning-color: #ff9a2e;
+        --warning-color-hover: #ffb65d;
+        --warning-color-light: #2b231c;
+
+        --danger-color: #f76560;
+        --danger-color-hover: #f98981;
+        --danger-color-light: #2b1d1d;
+
+        --status-not-started-bg: #373739;
+        --status-not-started-text: #c9cdd4;
+        --status-in-progress-bg: #1a2b1e;
+        --status-in-progress-text: #23c343;
+        --status-completed-bg: #2b1d1d;
+        --status-completed-text: #f76560;
+
+        --btn-view-bg: #1c2b4f;
+        --btn-view-text: #6aa1ff;
+        --btn-view-hover: #263659;
+        --btn-edit-bg: #1a2b1e;
+        --btn-edit-text: #4cd263;
+        --btn-edit-hover: #1f3b24;
+        --btn-delete-bg: #2b1d1d;
+        --btn-delete-text: #f98981;
+        --btn-delete-hover: #3a2424;
+
+        --input-bg: #2a2a2b;
+        --input-border: #333335;
+        --input-focus-border: #6aa1ff;
+        --input-focus-bg: #333335;
+        --input-focus-shadow: rgba(64, 128, 255, 0.2);
+      }
+
+      .ipad-container {
+        width: 1024px;
+        height: 768px;
+        background-color: var(--bg-container);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .status-bar {
+        height: 24px;
+        background-color: var(--bg-status-bar);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 16px;
+        align-items: center;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      .content {
+        height: calc(100% - 24px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .content::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card-container {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .card-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .pagination {
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        border-top: 1px solid var(--border-color);
+        background-color: var(--bg-card);
+      }
+
+      .page-btn {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        transition: all 0.2s;
+        font-size: 14px;
+      }
+
+      .page-btn.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .page-btn:not(.active) {
+        background-color: var(--bg-main);
+        color: var(--text-secondary);
+      }
+
+      .page-btn:hover:not(.active) {
+        background-color: var(--border-color);
+      }
+
+      .page-navigation {
+        color: var(--text-secondary);
+        background-color: var(--bg-main);
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+
+      .page-navigation:hover {
+        background-color: var(--border-color);
+      }
+
+      .card {
+        border-radius: 8px;
+        background-color: var(--bg-card);
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid var(--border-color);
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* 状态标签样式 */
+      .status-badge {
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .status-not-started {
+        background-color: var(--status-not-started-bg);
+        color: var(--status-not-started-text);
+      }
+
+      .status-in-progress {
+        background-color: var(--status-in-progress-bg);
+        color: var(--status-in-progress-text);
+      }
+
+      .status-completed {
+        background-color: var(--status-completed-bg);
+        color: var(--status-completed-text);
+      }
+
+      /* 操作按钮样式 */
+      .action-btn {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.2s ease;
+        font-weight: 500;
+      }
+
+      .view-btn {
+        color: var(--btn-view-text);
+        background-color: var(--btn-view-bg);
+      }
+
+      .view-btn:hover {
+        background-color: var(--btn-view-hover);
+      }
+
+      .edit-btn {
+        color: var(--btn-edit-text);
+        background-color: var(--btn-edit-bg);
+      }
+
+      .edit-btn:hover {
+        background-color: var(--btn-edit-hover);
+      }
+
+      .delete-btn {
+        color: var(--btn-delete-text);
+        background-color: var(--btn-delete-bg);
+      }
+
+      .delete-btn:hover {
+        background-color: var(--btn-delete-hover);
+      }
+
+      .search-box {
+        position: relative;
+      }
+
+      .search-box input {
+        padding-left: 36px;
+        border: 1px solid var(--input-border);
+        border-radius: 4px;
+        background-color: var(--input-bg);
+        color: var(--text-primary);
+        transition: all 0.2s;
+        height: 32px;
+      }
+
+      .search-box input::placeholder {
+        color: var(--text-tertiary);
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--input-focus-border);
+        background-color: var(--input-focus-bg);
+        box-shadow: 0 0 0 2px var(--input-focus-shadow);
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+      }
+
+      .ipad-mockup {
+        background-color: #1a1a1a;
+        border-radius: 24px;
+        padding: 16px;
+        box-shadow: 0 0 0 2px rgba(75, 75, 75, 0.5), 0 20px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .ipad-frame {
+        background-color: #000000;
+        border-radius: 16px;
+        padding: 4px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ipad-frame::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(60, 60, 60, 0.8);
+        top: 16px;
+        left: calc(50% - 5px);
+        z-index: 1;
+      }
+
+      .ipad-frame::after {
+        display: none;
+      }
+
+      .ipad-home-button {
+        display: none;
+      }
+
+      /* 分步骤表单样式 */
+      .steps-container {
+        display: flex;
+        margin-bottom: 24px;
+      }
+
+      .step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .step-number {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 16px;
+        display: inline-block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step.active .step-number {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .step.completed .step-number {
+        background-color: var(--success-color);
+        color: white;
+      }
+
+      .step:not(.active):not(.completed) .step-number {
+        background-color: var(--status-not-started-bg);
+        color: var(--status-not-started-text);
+      }
+
+      .step-title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .step.active .step-title {
+        color: var(--primary-color);
+      }
+
+      .step.completed .step-title {
+        color: var(--success-color);
+      }
+
+      .step:not(.active):not(.completed) .step-title {
+        color: var(--text-secondary);
+      }
+
+      .step-line {
+        position: absolute;
+        top: 16px;
+        height: 2px;
+        width: 100%;
+        right: 50%;
+        background-color: var(--border-color);
+      }
+
+      .step.completed .step-line {
+        background-color: var(--success-color);
+      }
+
+      .step:first-child .step-line {
+        display: none;
+      }
+
+      /* 表单样式 */
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--text-primary);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background-color: var(--bg-container);
+        color: var(--text-primary);
+        font-size: 14px;
+        height: 36px;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px var(--input-focus-shadow);
+      }
+
+      /* 表格样式 */
+      .table-container {
+        overflow-x: auto;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 14px;
+      }
+
+      .table th {
+        background-color: var(--bg-status-bar);
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .table tbody tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .table tbody tr:hover {
+        background-color: rgba(22, 93, 255, 0.05);
+      }
+
+      /* 按钮组 */
+      .form-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 32px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-color-hover);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--bg-main);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="themes-container">
+      <!-- 亮色主题版本 -->
+      <div>
+        <div class="page-title">实训计划</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="content">
+                <!-- 顶部导航栏 -->
+                <header
+                  class="py-4 px-6 flex justify-between items-center border-b"
+                  style="border-color: var(--border-color); background-color: var(--bg-card)">
+                  <div class="flex items-center">
+                    <iconify-icon
+                      icon="carbon:education"
+                      class="text-blue-500 dark:text-blue-400"
+                      width="28"></iconify-icon>
+                    <h1 class="text-xl font-bold ml-2 text-gray-800 dark:text-gray-100">培训计划</h1>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm mr-2 text-gray-600 dark:text-gray-300">王老师</span>
+                    <img
+                      src="https://randomuser.me/api/portraits/men/32.jpg"
+                      alt="用户头像"
+                      class="w-10 h-10 rounded-full border-2 border-blue-500" />
+                  </div>
+                </header>
+
+                <!-- 主要内容区域 -->
+                <main class="flex flex-col flex-1 pt-6 px-6 pb-3">
+                  <div class="mb-6 flex justify-between items-center">
+                    <div>
+                      <h2 class="text-xl font-bold mb-2 text-gray-800 dark:text-gray-100">我的培训计划</h2>
+                      <p class="text-sm text-gray-600 dark:text-gray-300">查看和管理您的培训活动</p>
+                    </div>
+                    <button
+                      class="h-9 px-4 bg-blue-600 text-white rounded-[4px] flex items-center hover:bg-blue-700 transition-colors text-sm"
+                      style="background-color: var(--primary-color); border: none; color: white">
+                      <iconify-icon icon="mdi:plus" class="mr-1" width="16"></iconify-icon>
+                      开课
+                    </button>
+                  </div>
+
+                  <!-- 课程筛选和搜索 -->
+                  <div class="pb-3 flex items-center justify-between">
+                    <div class="flex space-x-2">
+                      <button
+                        class="h-8 px-3 rounded-[4px] flex items-center text-xs"
+                        style="background-color: var(--primary-color); color: white">
+                        <iconify-icon icon="mdi:filter" class="mr-1" width="12"></iconify-icon>
+                        全部
+                      </button>
+                      <button
+                        class="h-8 px-3 rounded-[4px] border flex items-center transition-colors text-xs"
+                        style="
+                          color: var(--text-secondary);
+                          border-color: var(--border-color);
+                          background-color: var(--bg-card);
+                        ">
+                        未开始
+                      </button>
+                      <button
+                        class="h-8 px-3 rounded-[4px] border flex items-center transition-colors text-xs"
+                        style="
+                          color: var(--text-secondary);
+                          border-color: var(--border-color);
+                          background-color: var(--bg-card);
+                        ">
+                        进行中
+                      </button>
+                    </div>
+
+                    <!-- 搜索框 -->
+                    <div class="search-box w-36">
+                      <iconify-icon icon="mdi:magnify" class="search-icon" width="16"></iconify-icon>
+                      <input
+                        type="text"
+                        placeholder="搜索开课名称"
+                        class="w-full h-8 py-1 px-4 text-xs"
+                        style="border-color: var(--border-color)" />
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <!-- 计划卡片 - 宫格布局 -->
+                    <div class="card-container">
+                      <div class="grid grid-cols-3 gap-4 pb-4">
+                        <!-- 计划卡片 1 - 未开始 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">机械设备操作培训</h3>
+                            <span class="status-badge status-not-started">未开始</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>基础技能培训</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-10-15 至 2023-10-20</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>数控车床、铣床</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/men/44.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 计划卡片 2 - 进行中 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">电气自动化培训</h3>
+                            <span class="status-badge status-in-progress">进行中</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>高级技术培训</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-09-25 至 2023-10-25</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>PLC控制器、变频器</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 计划卡片 3 - 已结束 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">安全生产培训</h3>
+                            <span class="status-badge status-completed">已结束</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>安全教育</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-08-10 至 2023-08-15</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>消防设备、应急装备</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/women/22.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 计划卡片 4 - 未开始 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">3D打印技术入门</h3>
+                            <span class="status-badge status-not-started">未开始</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>新技术培训</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-11-10 至 2023-11-20</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>3D打印机、建模软件</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/women/42.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 计划卡片 5 - 进行中 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">焊接技术提升</h3>
+                            <span class="status-badge status-in-progress">进行中</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>专业技能进阶</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-10-01 至 2023-10-30</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>氩弧焊机、等离子切割机</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/men/22.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 计划卡片 6 - 已结束 -->
+                        <div class="card p-4">
+                          <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-sm font-semibold text-gray-800 dark:text-gray-100">CAD/CAM软件应用</h3>
+                            <span class="status-badge status-completed">已结束</span>
+                          </div>
+                          <div class="space-y-2 text-xs text-gray-600 dark:text-gray-300 mb-3">
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tag-outline"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>软件应用培训</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:calendar-range"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>2023-07-15 至 2023-08-05</span>
+                            </div>
+                            <div class="flex items-center">
+                              <iconify-icon
+                                icon="mdi:tools"
+                                class="mr-1.5 text-gray-400 dark:text-gray-500"
+                                width="14"></iconify-icon>
+                              <span>工作站、绘图软件</span>
+                            </div>
+                          </div>
+                          <div
+                            class="pt-3 flex justify-between items-center"
+                            style="border-top: 1px solid var(--border-color)">
+                            <div class="flex -space-x-2">
+                              <img
+                                src="https://randomuser.me/api/portraits/women/85.jpg"
+                                class="w-6 h-6 rounded-full border-2"
+                                style="border-color: var(--bg-container)"
+                                alt="讲师" />
+                            </div>
+                            <div class="flex space-x-1">
+                              <button class="action-btn view-btn">
+                                <iconify-icon icon="mdi:eye-outline" class="mr-1" width="12"></iconify-icon>
+                                查看
+                              </button>
+                              <button class="action-btn edit-btn">
+                                <iconify-icon icon="mdi:pencil-outline" class="mr-1" width="12"></iconify-icon>
+                                编辑
+                              </button>
+                              <button class="action-btn delete-btn">
+                                <iconify-icon icon="mdi:delete-outline" class="mr-1" width="12"></iconify-icon>
+                                删除
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 分页控件 -->
+                  <div class="pagination justify-end">
+                    <button class="page-navigation">
+                      <iconify-icon icon="mdi:chevron-left" width="20"></iconify-icon>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-navigation">
+                      <iconify-icon icon="mdi:chevron-right" width="20"></iconify-icon>
+                    </button>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 新增开课页面 -->
+      <div>
+        <div class="page-title">开课设置</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="content">
+                <!-- 顶部导航栏 -->
+                <header
+                  class="py-4 px-6 flex items-center border-b relative"
+                  style="border-color: var(--border-color); background-color: var(--bg-card)">
+                  <button
+                    class="absolute left-6 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    title="返回"
+                    style="color: var(--text-secondary); transition: all 0.2s">
+                    <iconify-icon icon="mdi:arrow-left" width="20" style="color: inherit"></iconify-icon>
+                  </button>
+                  <h1 class="text-xl font-bold w-full text-center text-gray-800 dark:text-gray-100">新增培训计划</h1>
+                </header>
+
+                <!-- 主要内容区域 -->
+                <main class="flex flex-col flex-1 p-6">
+                  <!-- 步骤指示器 -->
+                  <div class="steps-container mb-6">
+                    <div class="step active">
+                      <div class="step-line"></div>
+                      <div class="step-number">1</div>
+                      <div class="step-title">基本信息</div>
+                    </div>
+                    <div class="step">
+                      <div class="step-line"></div>
+                      <div class="step-number">2</div>
+                      <div class="step-title">设备复位</div>
+                    </div>
+                    <div class="step">
+                      <div class="step-line"></div>
+                      <div class="step-number">3</div>
+                      <div class="step-title">故障设置</div>
+                    </div>
+                  </div>
+
+                  <div class="card-container">
+                    <div
+                      class="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+                      style="border-radius: 8px; box-shadow: var(--shadow-sm); background-color: var(--bg-card)">
+                      <h2 class="text-lg font-bold mb-6 text-gray-800 dark:text-gray-100">第一步：设置实训信息</h2>
+
+                      <!-- 表单开始 -->
+                      <form class="grid grid-cols-2 gap-6">
+                        <!-- 左侧列 -->
+                        <div>
+                          <div class="form-group">
+                            <label class="form-label">计划名称</label>
+                            <input type="text" class="form-control" placeholder="请输入计划名称" />
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">计划编码</label>
+                            <input type="text" class="form-control" placeholder="请输入计划编码" />
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">实训模式</label>
+                            <select class="form-control">
+                              <option>单人模式</option>
+                              <option>团队模式</option>
+                              <option>竞赛模式</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">实训日期</label>
+                            <input type="date" class="form-control" />
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">实训时间</label>
+                            <div class="grid grid-cols-2 gap-4">
+                              <input type="time" class="form-control" placeholder="开始时间" />
+                              <input type="time" class="form-control" placeholder="结束时间" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 右侧列 -->
+                        <div>
+                          <div class="form-group">
+                            <label class="form-label">实训顺序</label>
+                            <div class="flex items-center space-x-6 mt-2">
+                              <label class="flex items-center cursor-pointer">
+                                <div
+                                  class="w-4 h-4 rounded-full border-2 border-primary-color relative mr-2 flex items-center justify-center"
+                                  style="border-color: var(--primary-color)">
+                                  <div
+                                    class="w-2 h-2 rounded-full bg-primary-color"
+                                    style="background-color: var(--primary-color)"></div>
+                                </div>
+                                <input type="radio" name="order" class="hidden" checked />
+                                <span>固定顺序</span>
+                              </label>
+                              <label class="flex items-center cursor-pointer">
+                                <div
+                                  class="w-4 h-4 rounded-full border-2 border-gray-300 relative mr-2"
+                                  style="border-color: var(--border-color)"></div>
+                                <input type="radio" name="order" class="hidden" />
+                                <span>先到先考</span>
+                              </label>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">实训设备</label>
+                            <select class="form-control">
+                              <option>数控车床</option>
+                              <option>铣床</option>
+                              <option>PLC控制器</option>
+                              <option>变频器</option>
+                              <option>消防设备</option>
+                              <option>应急装备</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="form-label">实训考题</label>
+                            <select class="form-control">
+                              <option>基础操作技能评估</option>
+                              <option>高级技术操作实训</option>
+                              <option>设备故障诊断与排除</option>
+                              <option>设备维护保养操作</option>
+                              <option>安全操作规范评估</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- 跨两列的内容 -->
+                        <div class="col-span-2">
+                          <div class="flex justify-between items-center mb-3">
+                            <label class="form-label mb-0">实训人员列表</label>
+                            <button
+                              type="button"
+                              class="btn btn-primary h-8 px-3 text-xs"
+                              style="background-color: var(--primary-color)">
+                              <iconify-icon icon="mdi:account-plus" class="mr-1" width="16"></iconify-icon>
+                              添加人员
+                            </button>
+                          </div>
+                          <div class="table-container">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th style="width: 50px">#</th>
+                                  <th>姓名</th>
+                                  <th>工号</th>
+                                  <th>部门</th>
+                                  <th>职位</th>
+                                  <th style="width: 100px">操作</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>张三</td>
+                                  <td>EMP001</td>
+                                  <td>机械工程部</td>
+                                  <td>技术员</td>
+                                  <td>
+                                    <button
+                                      type="button"
+                                      class="text-red-500 hover:text-red-700"
+                                      style="color: var(--danger-color); transition: all 0.2s">
+                                      <iconify-icon icon="mdi:delete-outline" width="18"></iconify-icon>
+                                    </button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>李四</td>
+                                  <td>EMP002</td>
+                                  <td>电气工程部</td>
+                                  <td>工程师</td>
+                                  <td>
+                                    <button
+                                      type="button"
+                                      class="text-red-500 hover:text-red-700"
+                                      style="color: var(--danger-color); transition: all 0.2s">
+                                      <iconify-icon icon="mdi:delete-outline" width="18"></iconify-icon>
+                                    </button>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>王五</td>
+                                  <td>EMP003</td>
+                                  <td>机械工程部</td>
+                                  <td>技术员</td>
+                                  <td>
+                                    <button
+                                      type="button"
+                                      class="text-red-500 hover:text-red-700"
+                                      style="color: var(--danger-color); transition: all 0.2s">
+                                      <iconify-icon icon="mdi:delete-outline" width="18"></iconify-icon>
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        <!-- 按钮区域 -->
+                        <div class="col-span-2 form-buttons">
+                          <button
+                            type="button"
+                            class="btn btn-outline"
+                            style="border-color: var(--border-color); color: var(--text-secondary)">
+                            取消
+                          </button>
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            style="background-color: var(--primary-color); min-width: 88px">
+                            下一步
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
