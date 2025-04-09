@@ -21,9 +21,9 @@
       }
 
       .themes-container {
-        display: flex;
-        justify-content: center;
-        gap: 80px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
       }
 
       .page-title {
@@ -562,8 +562,50 @@
   </head>
   <body>
     <div class="themes-container">
+      <!-- 登录页面 -->
+      <div style="width: 100%">
+        <div class="page-title">登录</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div
+                class="content flex flex-col justify-center items-center"
+                style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2)">
+                <!-- 登录表单 -->
+                <div class="card p-6 w-80">
+                  <h2 class="text-lg font-bold mb-6 text-gray-800 dark:text-gray-100 text-center">用户登录</h2>
+                  <form class="space-y-4">
+                    <div class="form-group">
+                      <label class="form-label">用户名</label>
+                      <input type="text" class="form-control" placeholder="请输入用户名" />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">密码</label>
+                      <input type="password" class="form-control" placeholder="请输入密码" />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">登录</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 亮色主题版本 -->
-      <div>
+      <div style="width: 100%">
         <div class="page-title">实训计划</div>
         <div class="ipad-mockup">
           <div class="ipad-frame">
@@ -1018,7 +1060,7 @@
       </div>
 
       <!-- 新增开课页面 -->
-      <div>
+      <div style="width: 100%">
         <div class="page-title">开课设置</div>
         <div class="ipad-mockup">
           <div class="ipad-frame">
@@ -1254,6 +1296,595 @@
                           </button>
                         </div>
                       </form>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 计划详情页面 -->
+      <div style="width: 100%">
+        <div class="page-title">计划详情</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="content">
+                <!-- 顶部导航栏 -->
+                <header
+                  class="py-4 px-6 flex items-center border-b relative"
+                  style="border-color: var(--border-color); background-color: var(--bg-card)">
+                  <button
+                    class="absolute left-6 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    title="返回"
+                    style="color: var(--text-secondary); transition: all 0.2s">
+                    <iconify-icon icon="mdi:arrow-left" width="20" style="color: inherit"></iconify-icon>
+                  </button>
+                  <h1 class="text-xl font-bold w-full text-center text-gray-800 dark:text-gray-100">计划详情</h1>
+                </header>
+
+                <!-- 主要内容区域 -->
+                <main class="flex flex-col flex-1 p-6">
+                  <!-- 计划基本信息卡片 -->
+                  <div class="card p-6 mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                      <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">电气自动化培训</h2>
+                      <span class="status-badge status-in-progress">进行中</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                      <div class="space-y-3">
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训编号：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">TR-2023-0925</div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训类型：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">高级技术培训</div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训科目：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">电气设备维护与故障诊断</div>
+                        </div>
+                      </div>
+                      <div class="space-y-3">
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训设备：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">PLC控制器、变频器</div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训时间：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">2023-09-25 至 2023-10-25</div>
+                        </div>
+                        <div class="flex items-start">
+                          <div class="w-24 text-sm text-gray-500 dark:text-gray-400">培训地点：</div>
+                          <div class="text-sm text-gray-800 dark:text-gray-200">3号实训车间</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 培训描述 -->
+                    <div class="mt-4 pt-4 border-t" style="border-color: var(--border-color)">
+                      <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">培训描述：</div>
+                      <p class="text-sm text-gray-800 dark:text-gray-200">
+                        本次培训旨在提高学员对电气自动化设备的操作和维护能力，包括PLC编程、变频器调试及常见故障诊断与排除。培训结束后学员将能够独立完成设备的日常维护和基本故障处理工作。
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- 参训人员列表 -->
+                  <div class="mb-4">
+                    <div class="flex justify-between items-center mb-4">
+                      <h3 class="text-base font-semibold text-gray-800 dark:text-gray-100">参训人员</h3>
+                      <span class="text-sm text-gray-500 dark:text-gray-400">共12人</span>
+                    </div>
+
+                    <div class="overflow-hidden rounded-lg border" style="border-color: var(--border-color)">
+                      <!-- 表头 -->
+                      <div
+                        class="grid grid-cols-8 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300"
+                        style="background-color: var(--bg-status-bar)">
+                        <div class="col-span-1">照片</div>
+                        <div class="col-span-1">姓名</div>
+                        <div class="col-span-2">所属部门</div>
+                        <div class="col-span-2">证件号</div>
+                        <div class="col-span-1">完成状态</div>
+                        <div class="col-span-1 text-right">操作</div>
+                      </div>
+
+                      <!-- 列表项 -->
+                      <div class="divide-y" style="border-color: var(--border-color)">
+                        <!-- 参训人员1 - 未完成 -->
+                        <div
+                          class="grid grid-cols-8 px-4 py-3 items-center hover:bg-gray-50 dark:hover:bg-gray-800 text-sm">
+                          <div class="col-span-1">
+                            <img
+                              src="https://randomuser.me/api/portraits/men/32.jpg"
+                              alt="学员照片"
+                              class="w-8 h-8 rounded-full" />
+                          </div>
+                          <div class="col-span-1 font-medium text-gray-800 dark:text-gray-200">李四</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">电气工程部 / 工程师</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">110101199003076651</div>
+                          <div class="col-span-1">
+                            <span class="status-badge status-not-started text-xs">未开始</span>
+                          </div>
+                          <div class="col-span-1 text-right">
+                            <button
+                              class="btn-primary text-xs h-7 px-3 rounded-[4px]"
+                              style="background-color: var(--primary-color)">
+                              开始实训
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- 参训人员2 - 进行中 -->
+                        <div
+                          class="grid grid-cols-8 px-4 py-3 items-center hover:bg-gray-50 dark:hover:bg-gray-800 text-sm">
+                          <div class="col-span-1">
+                            <img
+                              src="https://randomuser.me/api/portraits/women/22.jpg"
+                              alt="学员照片"
+                              class="w-8 h-8 rounded-full" />
+                          </div>
+                          <div class="col-span-1 font-medium text-gray-800 dark:text-gray-200">王芳</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">电气工程部 / 技术专员</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">110101199104076542</div>
+                          <div class="col-span-1">
+                            <span class="status-badge status-in-progress text-xs">进行中</span>
+                          </div>
+                          <div class="col-span-1 text-right">
+                            <button
+                              class="btn-primary text-xs h-7 px-3 rounded-[4px]"
+                              style="background-color: var(--primary-color)">
+                              继续实训
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- 参训人员3 - 已完成 -->
+                        <div
+                          class="grid grid-cols-8 px-4 py-3 items-center hover:bg-gray-50 dark:hover:bg-gray-800 text-sm">
+                          <div class="col-span-1">
+                            <img
+                              src="https://randomuser.me/api/portraits/men/42.jpg"
+                              alt="学员照片"
+                              class="w-8 h-8 rounded-full" />
+                          </div>
+                          <div class="col-span-1 font-medium text-gray-800 dark:text-gray-200">张明</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">电气工程部 / 主管</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">110101198805076832</div>
+                          <div class="col-span-1">
+                            <span class="status-badge status-completed text-xs">已完成</span>
+                          </div>
+                          <div class="col-span-1 text-right">
+                            <button
+                              class="btn-outline text-xs h-7 px-3 rounded-[4px] flex items-center ml-auto"
+                              style="border-color: var(--primary-color); color: var(--primary-color)">
+                              <iconify-icon icon="mdi:chart-bar" class="mr-1" width="14"></iconify-icon>
+                              查看成绩
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- 参训人员4 - 未开始 -->
+                        <div
+                          class="grid grid-cols-8 px-4 py-3 items-center hover:bg-gray-50 dark:hover:bg-gray-800 text-sm">
+                          <div class="col-span-1">
+                            <img
+                              src="https://randomuser.me/api/portraits/women/42.jpg"
+                              alt="学员照片"
+                              class="w-8 h-8 rounded-full" />
+                          </div>
+                          <div class="col-span-1 font-medium text-gray-800 dark:text-gray-200">刘洋</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">维修部 / 技术员</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">110101199506075421</div>
+                          <div class="col-span-1">
+                            <span class="status-badge status-not-started text-xs">未开始</span>
+                          </div>
+                          <div class="col-span-1 text-right">
+                            <button
+                              class="btn-primary text-xs h-7 px-3 rounded-[4px]"
+                              style="background-color: var(--primary-color)">
+                              开始实训
+                            </button>
+                          </div>
+                        </div>
+
+                        <!-- 参训人员5 - 已完成 -->
+                        <div
+                          class="grid grid-cols-8 px-4 py-3 items-center hover:bg-gray-50 dark:hover:bg-gray-800 text-sm">
+                          <div class="col-span-1">
+                            <img
+                              src="https://randomuser.me/api/portraits/men/28.jpg"
+                              alt="学员照片"
+                              class="w-8 h-8 rounded-full" />
+                          </div>
+                          <div class="col-span-1 font-medium text-gray-800 dark:text-gray-200">陈伟</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">电气工程部 / 工程师</div>
+                          <div class="col-span-2 text-gray-600 dark:text-gray-400">110101199102076891</div>
+                          <div class="col-span-1">
+                            <span class="status-badge status-completed text-xs">已完成</span>
+                          </div>
+                          <div class="col-span-1 text-right">
+                            <button
+                              class="btn-outline text-xs h-7 px-3 rounded-[4px] flex items-center ml-auto"
+                              style="border-color: var(--primary-color); color: var(--primary-color)">
+                              <iconify-icon icon="mdi:chart-bar" class="mr-1" width="14"></iconify-icon>
+                              查看成绩
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 分页控件 -->
+                  <div class="pagination justify-end mt-auto">
+                    <button class="page-navigation">
+                      <iconify-icon icon="mdi:chevron-left" width="20"></iconify-icon>
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-navigation">
+                      <iconify-icon icon="mdi:chevron-right" width="20"></iconify-icon>
+                    </button>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 实训监控页面 -->
+      <div style="width: 100%">
+        <div class="page-title">实训监控页面</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="content">
+                <!-- 顶部导航栏 -->
+                <header
+                  class="py-4 px-6 flex items-center border-b relative"
+                  style="border-color: var(--border-color); background-color: var(--bg-card)">
+                  <button
+                    class="absolute left-6 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    title="返回"
+                    style="color: var(--text-secondary); transition: all 0.2s">
+                    <iconify-icon icon="mdi:arrow-left" width="20" style="color: inherit"></iconify-icon>
+                  </button>
+                  <h1 class="text-xl font-bold w-full text-center text-gray-800 dark:text-gray-100">实训监控</h1>
+                </header>
+
+                <!-- 主要内容区域 -->
+                <main class="flex flex-col flex-1 pt-4 px-6 pb-3 overflow-y-auto">
+                  <!-- 实训基本信息 -->
+                  <div class="card p-4 mb-4">
+                    <div class="flex justify-between items-center mb-3">
+                      <h2 class="text-base font-bold text-gray-800 dark:text-gray-100">数控车床操作实训</h2>
+                      <span class="status-badge status-in-progress">
+                        <iconify-icon icon="mdi:clock" class="mr-1" width="14"></iconify-icon>
+                        进行中
+                      </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <div class="text-gray-500 mb-1">培训时间</div>
+                        <div class="font-medium">2023-10-15 至 2023-10-20</div>
+                      </div>
+                      <div>
+                        <div class="text-gray-500 mb-1">学员姓名</div>
+                        <div class="font-medium">张明</div>
+                      </div>
+                      <div>
+                        <div class="text-gray-500 mb-1">实训当前进度</div>
+                        <div class="font-medium">第3步/共5步</div>
+                      </div>
+                      <div>
+                        <div class="text-gray-500 mb-1">实训时长</div>
+                        <div class="font-medium">58分钟</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 实训流程和实时监控 -->
+                  <div class="grid grid-cols-2 gap-4 mb-4">
+                    <!-- 左侧: 实训流程 -->
+                    <div class="card p-4 col-span-1">
+                      <h3 class="text-sm font-bold mb-3 text-gray-800 dark:text-gray-100">实训流程</h3>
+
+                      <div class="flex flex-col items-center">
+                        <!-- 第1步 -->
+                        <div class="w-full flex items-center mb-4">
+                          <div
+                            class="w-10 h-10 rounded-full bg-success-color flex items-center justify-center text-white font-medium text-sm">
+                            1
+                          </div>
+                          <div class="ml-3 flex-1">
+                            <div class="text-sm font-medium">设备准备与安全检查</div>
+                            <div class="text-xs text-gray-500">已完成</div>
+                          </div>
+                          <div class="text-xs text-success-color">100%</div>
+                        </div>
+
+                        <!-- 连接线 -->
+                        <div class="w-0.5 h-4 bg-success-color"></div>
+
+                        <!-- 第2步 -->
+                        <div class="w-full flex items-center mb-4">
+                          <div
+                            class="w-10 h-10 rounded-full bg-success-color flex items-center justify-center text-white font-medium text-sm">
+                            2
+                          </div>
+                          <div class="ml-3 flex-1">
+                            <div class="text-sm font-medium">工件装夹与对刀</div>
+                            <div class="text-xs text-gray-500">已完成</div>
+                          </div>
+                          <div class="text-xs text-success-color">100%</div>
+                        </div>
+
+                        <!-- 连接线 -->
+                        <div class="w-0.5 h-4 bg-primary-color"></div>
+
+                        <!-- 第3步（当前步骤） -->
+                        <div class="w-full flex items-center mb-4">
+                          <div
+                            class="w-10 h-10 rounded-full bg-primary-color flex items-center justify-center text-white font-medium text-sm">
+                            3
+                          </div>
+                          <div class="ml-3 flex-1">
+                            <div class="text-sm font-medium">参数设置与编程</div>
+                            <div class="text-xs text-gray-500">进行中</div>
+                          </div>
+                          <div class="text-xs text-primary-color">64%</div>
+                        </div>
+
+                        <!-- 连接线 -->
+                        <div class="w-0.5 h-4 bg-gray-300"></div>
+
+                        <!-- 第4步 -->
+                        <div class="w-full flex items-center mb-4">
+                          <div
+                            class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-medium text-sm">
+                            4
+                          </div>
+                          <div class="ml-3 flex-1">
+                            <div class="text-sm font-medium">试切与调整</div>
+                            <div class="text-xs text-gray-500">未开始</div>
+                          </div>
+                          <div class="text-xs text-gray-500">0%</div>
+                        </div>
+
+                        <!-- 连接线 -->
+                        <div class="w-0.5 h-4 bg-gray-300"></div>
+
+                        <!-- 第5步 -->
+                        <div class="w-full flex items-center">
+                          <div
+                            class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-medium text-sm">
+                            5
+                          </div>
+                          <div class="ml-3 flex-1">
+                            <div class="text-sm font-medium">批量加工与质检</div>
+                            <div class="text-xs text-gray-500">未开始</div>
+                          </div>
+                          <div class="text-xs text-gray-500">0%</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 右侧: 实时打分 -->
+                    <div class="card p-4 col-span-1">
+                      <h3 class="text-sm font-bold mb-3 text-gray-800 dark:text-gray-100">实时打分</h3>
+
+                      <!-- 打分统计 -->
+                      <div class="space-y-4">
+                        <div>
+                          <div class="flex justify-between mb-1">
+                            <span class="text-xs font-medium">当前分数</span>
+                            <span class="text-xs font-medium">92分</span>
+                          </div>
+                          <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-success-color h-2 rounded-full" style="width: 92%"></div>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div class="flex justify-between mb-1">
+                            <span class="text-xs font-medium">错误次数</span>
+                            <span class="text-xs font-medium">1次</span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div class="flex justify-between mb-1">
+                            <span class="text-xs font-medium">用时</span>
+                            <span class="text-xs font-medium">45分钟</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 平均分 -->
+                      <div class="mt-4 flex items-center justify-center">
+                        <div class="relative">
+                          <svg width="100" height="100" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#f2f3f5" stroke-width="8" />
+                            <circle
+                              cx="50"
+                              cy="50"
+                              r="45"
+                              fill="none"
+                              stroke="#165dff"
+                              stroke-width="8"
+                              stroke-dasharray="283"
+                              stroke-dashoffset="85"
+                              stroke-linecap="round" />
+                          </svg>
+                          <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <div class="text-2xl font-bold">82.5</div>
+                            <div class="text-xs text-gray-500">平均分</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 实训评分页面 -->
+      <div style="width: 100%">
+        <div class="page-title">实训评分页面</div>
+        <div class="ipad-mockup">
+          <div class="ipad-frame">
+            <div class="ipad-container light-theme">
+              <!-- 状态栏 -->
+              <div class="status-bar">
+                <div class="flex items-center">
+                  <span>9:41</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <iconify-icon icon="mdi:signal" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:wifi" width="16"></iconify-icon>
+                  <iconify-icon icon="mdi:battery" width="16"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="content">
+                <!-- 顶部导航栏 -->
+                <header
+                  class="py-4 px-6 flex items-center border-b relative"
+                  style="border-color: var(--border-color); background-color: var(--bg-card)">
+                  <button
+                    class="absolute left-6 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                    title="返回"
+                    style="color: var(--text-secondary); transition: all 0.2s">
+                    <iconify-icon icon="mdi:arrow-left" width="20" style="color: inherit"></iconify-icon>
+                  </button>
+                  <h1 class="text-xl font-bold w-full text-center text-gray-800 dark:text-gray-100">实训评分</h1>
+                </header>
+
+                <!-- 主要内容区域 -->
+                <main class="flex flex-col flex-1 pt-4 px-6 pb-3 overflow-y-auto">
+                  <!-- 上部分: 实训基本信息 -->
+                  <div class="card p-4 mb-4">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <div class="text-gray-500 mb-1">学员姓名</div>
+                        <div class="font-medium">张明</div>
+                      </div>
+                      <div>
+                        <div class="text-gray-500 mb-1">课程名称</div>
+                        <div class="font-medium">数控车床操作实训</div>
+                      </div>
+                      <div>
+                        <div class="text-gray-500 mb-1">实训耗时</div>
+                        <div class="font-medium">58分钟</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 下部分: 流程步骤信息及评分 -->
+                  <div class="card p-4">
+                    <h3 class="text-sm font-bold mb-3 text-gray-800 dark:text-gray-100">流程步骤信息及评分</h3>
+
+                    <div class="space-y-4">
+                      <!-- 步骤1 -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                          <div class="text-sm font-medium">步骤1: 设备准备与安全检查</div>
+                          <div class="text-xs text-gray-500">AI评分: 95分</div>
+                          <div class="text-xs text-gray-500">
+                            教员评分:
+                            <input type="number" class="form-control inline-block w-16" min="0" max="100" value="90" />
+                          </div>
+                        </div>
+                        <div class="text-sm font-medium">最终得分: 92.5分</div>
+                      </div>
+
+                      <!-- 步骤2 -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                          <div class="text-sm font-medium">步骤2: 工件装夹与对刀</div>
+                          <div class="text-xs text-gray-500">AI评分: 88分</div>
+                          <div class="text-xs text-gray-500">
+                            教员评分:
+                            <input type="number" class="form-control inline-block w-16" min="0" max="100" value="85" />
+                          </div>
+                        </div>
+                        <div class="text-sm font-medium">最终得分: 86.5分</div>
+                      </div>
+
+                      <!-- 步骤3 -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                          <div class="text-sm font-medium">步骤3: 参数设置与编程</div>
+                          <div class="text-xs text-gray-500">AI评分: 90分</div>
+                          <div class="text-xs text-gray-500">
+                            教员评分:
+                            <input type="number" class="form-control inline-block w-16" min="0" max="100" value="92" />
+                          </div>
+                        </div>
+                        <div class="text-sm font-medium">最终得分: 91分</div>
+                      </div>
+
+                      <!-- 步骤4 -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                          <div class="text-sm font-medium">步骤4: 试切与调整</div>
+                          <div class="text-xs text-gray-500">AI评分: 85分</div>
+                          <div class="text-xs text-gray-500">
+                            教员评分:
+                            <input type="number" class="form-control inline-block w-16" min="0" max="100" value="87" />
+                          </div>
+                        </div>
+                        <div class="text-sm font-medium">最终得分: 86分</div>
+                      </div>
+
+                      <!-- 步骤5 -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                          <div class="text-sm font-medium">步骤5: 批量加工与质检</div>
+                          <div class="text-xs text-gray-500">AI评分: 92分</div>
+                          <div class="text-xs text-gray-500">
+                            教员评分:
+                            <input type="number" class="form-control inline-block w-16" min="0" max="100" value="90" />
+                          </div>
+                        </div>
+                        <div class="text-sm font-medium">最终得分: 91分</div>
+                      </div>
                     </div>
                   </div>
                 </main>
