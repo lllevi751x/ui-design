@@ -15,9 +15,30 @@
         background-color: #f5f7fa;
         padding: 40px;
         min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      }
+
+      /* 自定义登录页面样式 */
+      .dark-login {
+        background-color: #17171a !important;
+      }
+
+      .dark-login .content {
+        background-color: #17171a !important;
+        flex-direction: row !important;
+      }
+
+      .dark-login .status-bar {
+        background-color: #111111;
+      }
+
+      .dark-form-input {
+        background-color: #232324 !important;
+        border-color: #333335 !important;
+        color: #f6f6f6 !important;
+      }
+
+      .dark-form-input:focus {
+        border-color: #4080ff !important;
       }
 
       .themes-container {
@@ -143,7 +164,6 @@
       }
 
       .ipad-container {
-        width: 1024px;
         height: 768px;
         background-color: var(--bg-container);
         border-radius: 16px;
@@ -580,23 +600,59 @@
                 </div>
               </div>
 
-              <div
-                class="content flex flex-col justify-center items-center"
-                style="background: linear-gradient(135deg, #f5f7fa, #c3cfe2)">
-                <!-- 登录表单 -->
-                <div class="card p-6 w-80">
-                  <h2 class="text-lg font-bold mb-6 text-gray-800 dark:text-gray-100 text-center">用户登录</h2>
-                  <form class="space-y-4">
-                    <div class="form-group">
-                      <label class="form-label">用户名</label>
-                      <input type="text" class="form-control" placeholder="请输入用户名" />
+              <div class="content flex flex-row" style="background-color: #f7f8fa; height: 100%">
+                <!-- 左侧图片区域 -->
+                <div
+                  class="w-1/2 bg-center bg-cover bg-no-repeat relative overflow-hidden"
+                  style="background-color: #e8f3ff">
+                  <img
+                    src="https://images.unsplash.com/photo-1581094794329-c8112a1bd392?auto=format&fit=crop&w=800&q=80"
+                    alt="工业技术图片"
+                    class="absolute inset-0 w-full h-full object-cover" />
+                  <!-- 添加一个半透明的遮罩增强可读性 -->
+                  <div class="absolute inset-0 bg-blue-500 bg-opacity-10"></div>
+                </div>
+
+                <!-- 右侧登录表单 -->
+                <div class="w-1/2 flex flex-col justify-center items-center px-12">
+                  <div class="w-full max-w-md">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">登录系统</h2>
+                    <p class="text-gray-600 mb-8">欢迎使用工业培训管理平台，请登录您的账号</p>
+
+                    <form class="space-y-6">
+                      <div>
+                        <label class="block text-gray-600 text-sm mb-2">用户名</label>
+                        <input
+                          type="text"
+                          class="w-full bg-white border border-gray-200 rounded-md py-3 px-4 text-gray-800 focus:outline-none focus:border-blue-500 transition duration-200"
+                          placeholder="请输入用户名" />
+                      </div>
+                      <div>
+                        <label class="block text-gray-600 text-sm mb-2">密码</label>
+                        <input
+                          type="password"
+                          class="w-full bg-white border border-gray-200 rounded-md py-3 px-4 text-gray-800 focus:outline-none focus:border-blue-500 transition duration-200"
+                          placeholder="请输入密码" />
+                      </div>
+                      <div class="flex items-center">
+                        <input
+                          type="checkbox"
+                          class="h-4 w-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500"
+                          id="remember" />
+                        <label for="remember" class="ml-2 text-sm text-gray-600">我同意服务条款</label>
+                      </div>
+                      <button
+                        type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-md transition duration-200 font-medium">
+                        登录系统
+                      </button>
+                    </form>
+
+                    <div class="mt-6 text-center">
+                      <span class="text-gray-500 text-sm">还没有账号? </span>
+                      <a href="#" class="text-blue-500 text-sm hover:text-blue-400">立即注册</a>
                     </div>
-                    <div class="form-group">
-                      <label class="form-label">密码</label>
-                      <input type="password" class="form-control" placeholder="请输入密码" />
-                    </div>
-                    <button type="submit" class="btn btn-primary w-full">登录</button>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
